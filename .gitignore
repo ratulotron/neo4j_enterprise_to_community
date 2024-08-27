@@ -3,7 +3,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-
 # Jupyter Notebook
 .ipynb_checkpoints
 
@@ -15,12 +14,10 @@ ipython_config.py
 .env
 
 # PyCharm
-.idea/
+.idea
 
 # macOS
 .DS_Store
 
-
-# Backup
-dumps
+# Project
 logs

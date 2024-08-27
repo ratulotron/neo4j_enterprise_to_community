@@ -1,7 +1,7 @@
+name: neo4j_convert
 services:
-  neo4j-enterprise:
-#    profiles: [ "enterprise" ]
-    image: neo4j:4.4-enterprise
+  enterprise:
+    image: "neo4j:${NEO4J_VERSION:-5}-enterprise"
     platform: linux/x86_64
     ports:
       - "7474:7474"
@@ -15,9 +15,8 @@ services:
       - ./dumps:/dumps
       - ./scripts:/scripts
 
-  neo4j-community:
-#    profiles: [ "community" ]
-    image: neo4j:4.4-community
+  community:
+    image: "neo4j:${NEO4J_VERSION:-5}-community"
     platform: linux/x86_64
     ports:
       - "7475:7474"
@@ -32,5 +31,5 @@ services:
 
 
 volumes:
-    enterprise-data:
-    community-data:
+  enterprise-data:
+  community-data:
