@@ -35,8 +35,13 @@ function usage() {
 # Main #
 ########
 # Step 0: Clean slate
-docker compose down -v --remove-orphans
+echo ">>> Step 0: Clean slate"
 
+function clean_slate() {
+  docker compose down -v --remove-orphans
+}
+
+clean_slate >> /dev/null 2>&1
 
 # Step 1: Import to enterprise DB
 echo ">>> Step 1: Import to enterprise DB:  $DUMP_FILE"

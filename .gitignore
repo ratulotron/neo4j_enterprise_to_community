@@ -14,7 +14,7 @@ ipython_config.py
 .env
 
 # PyCharm
-.idea
+.idea/
 
 # macOS
 .DS_Store

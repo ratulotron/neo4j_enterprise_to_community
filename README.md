@@ -39,13 +39,13 @@ The script will take the data dump from the Aura/Enterprise Edition database and
 3. Run the following command to start the process:
 
 ```bash
-bash convert.sh <data-dump-file> <neo4j-version>
+./scripts/convert.sh <data-dump-file> <neo4j-version>
 ```
 
 Note that the script only needs the file name of the dump without the full extension. For example if your dump file is from Neo4j Aura, it's name will be `neo4j.dump` and you only need to provide `neo4j` as the first argument. The second argument is the version of Neo4j Community Edition you want to use. This has to match with the version of the Neo4j Aura/Enterprise Edition database the dump was taken from. For example, if the dump was taken from a Neo4j 4.3.1 database, you need to provide `4.3.1` as the second argument. That makes the command look like this:
 
 ```bash
-bash convert.sh neo4j 4.3.1
+./scripts/convert.sh neo4j 4.3.1
 ```
 
 4. The script will create a new file in the `dumps` directory with the name `<data-dump-file>_aligned.dump`.
