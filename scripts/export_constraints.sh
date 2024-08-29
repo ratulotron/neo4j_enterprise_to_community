@@ -37,7 +37,7 @@ function extract_query() {
 
 function save_query() {
     CONSTRAINTS_QUERY=$1
-    CYPHER_FILE=./dumps/"$DUMP_FILE"_constraints_creation.cypher
+    CYPHER_FILE=./dumps/"$DUMP_FILE"_constraints.cypher
     rm -f "$CYPHER_FILE"
     touch "$CYPHER_FILE"
     echo "$CONSTRAINTS_QUERY" > "$CYPHER_FILE"

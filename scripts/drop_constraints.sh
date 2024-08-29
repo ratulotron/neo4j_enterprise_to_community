@@ -1,4 +1,16 @@
 #!/bin/bash
+# Check if first argument is empty
+if [ -z "$1" ]; then
+  usage
+fi
+
+# Set the following environment variables
+NEO4J_URI="neo4j://localhost:7687"
+#NEO4J_USER=""
+#NEO4J_PASSWORD=""
+# Get file name from first argument
+DUMP_FILE="$1"
+
 
 ############
 # Function #
@@ -11,7 +23,7 @@ function usage() {
 
 function export_constraints() {
   PREFIX="$1"
-  cypher-shell -a "$NEO4J_URI" "SHOW CONSTRAINTS " > /dumps/"$DUMP_FILE"_"$PREFIX"_delete_constraints_and_indexes.txt
+  cypher-shell -a "$NEO4J_URI" "SHOW CONSTRAINTS " > /dumps/"$DUMP_FILE"_"$PREFIX"_constraints.txt
 }
 
 function run_cypher() {
@@ -40,18 +52,6 @@ function drop_constraints() {
 ########
 # Main #
 ########
-
-# Check if first argument is empty
-if [ -z "$1" ]; then
-  usage
-fi
-
-# Set the following environment variables
-NEO4J_URI="neo4j://localhost:7687"
-#NEO4J_USER=""
-#NEO4J_PASSWORD=""
-# Get file name from first argument
-DUMP_FILE="$1"
 
 
 

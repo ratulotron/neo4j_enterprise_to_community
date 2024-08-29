@@ -12,7 +12,6 @@ ALIGNED_DUMP_FILE_PATH=/dumps/"$DUMP_FILE"_aligned.dump
 #########
 # Setup #
 #########
-# Check if first argument is empty
 if [ -z "$DUMP_FILE" ]; then
   echo "Usage: $0 <dump_file> <optional neo4j_version>"
   exit 1
@@ -20,6 +19,12 @@ fi
 
 if [ -z "$NEO4J_VERSION" ]; then
   export NEO4J_VERSION=4.4
+fi
+
+# Check if Docker is running
+if ! docker info > /dev/null 2>&1; then
+  echo "Docker is not running. Please start Docker and try again."
+  exit 1
 fi
 
 #############
@@ -44,7 +49,7 @@ function clean_slate() {
 clean_slate >> /dev/null 2>&1
 
 # Step 1: Import to enterprise DB
-echo ">>> Step 1: Import to enterprise DB:  $DUMP_FILE"
+echo ">>> Step 1: Import to enterprise DB: $DUMP_FILE"
 
 function import_to_enterprise() {
   docker compose run -it "$NEO4J_ENTERPRISE_SERVICE" \
@@ -113,8 +118,3 @@ import_to_community >> /dev/null 2>&1
 # Step 6: Export constraints
 echo ">>> Step 6: Export constraints"
 ./scripts/export_constraints.sh "$DUMP_FILE"
-
-
-#
-##echo "Shutting down "$NEO4J_ENTERPRISE_SERVICE""
-#echo "Done"
